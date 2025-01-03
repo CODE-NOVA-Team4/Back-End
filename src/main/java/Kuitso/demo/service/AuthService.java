@@ -3,6 +3,8 @@ package Kuitso.demo.service;
 import Kuitso.demo.common.exception.UserException;
 import Kuitso.demo.domain.User;
 import Kuitso.demo.domain.base.BaseStatus;
+import Kuitso.demo.dto.auth.PostSLogInRequest;
+import Kuitso.demo.dto.auth.PostSLogInResponse;
 import Kuitso.demo.dto.auth.PostSignUpRequest;
 import Kuitso.demo.repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
@@ -11,8 +13,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
-import static Kuitso.demo.common.response.status.BaseExceptionResponseStatus.ALREADY_EXIST_USER;
-import static Kuitso.demo.common.response.status.BaseExceptionResponseStatus.CANNOT_FOUND_USER;
+import static Kuitso.demo.common.response.status.BaseExceptionResponseStatus.*;
 import static Kuitso.demo.domain.base.BaseStatus.ACTIVE;
 import static Kuitso.demo.domain.base.BaseStatus.DELETED;
 
@@ -57,6 +58,24 @@ public class AuthService {
 
         //유저상태변경
         user.setStatus(DELETED);
+
+    }
+
+    public PostSLogInResponse login(PostSLogInRequest postSLogInRequest, HttpServletRequest request) {
+        String email = postSLogInRequest.getEmail();
+        String password = postSLogInRequest.getPassword();
+
+        User user = userRepository.findByEmailAndStatus(email,ACTIVE)
+                .orElseThrow(() -> new UserException(CANNOT_FOUND_USER));
+
+        if(user.getPassword().equals(password)){
+            log.info("Login successful");
+            HttpSession session = request.getSession();
+            session.setAttribute("userId", user.getUserId());
+        }
+        else throw new UserException(LOGIN_FAILED);
+
+        return new PostSLogInResponse(user.getUserId());
 
     }
 }

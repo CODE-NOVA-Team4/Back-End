@@ -1,6 +1,8 @@
 package Kuitso.demo.controller;
 
 import Kuitso.demo.common.response.BaseResponse;
+import Kuitso.demo.dto.auth.PostSLogInRequest;
+import Kuitso.demo.dto.auth.PostSLogInResponse;
 import Kuitso.demo.dto.auth.PostSignUpRequest;
 import Kuitso.demo.service.AuthService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -31,4 +33,20 @@ public class AuthController {
         authService.signout(request);
         return new BaseResponse<>(null);
     }
+
+    @PostMapping("/login")
+    public BaseResponse<PostSLogInResponse> login(@RequestBody PostSLogInRequest postSLogInRequest,HttpServletRequest request) {
+
+        log.info("[AuthController].login");
+        return new BaseResponse<>(authService.login(postSLogInRequest,request));
+    }
+
+//    @PatchMapping("/logout")
+//    public BaseResponse<Void> logout(@RequestBody PostSLogInRequest postSLogInRequest,HttpServletRequest request) {
+//
+//        log.info("[AuthController].logout");
+//
+//        return new BaseResponse<>( authService.logout( postSLogInRequest,request);
+//    }
+
 }
