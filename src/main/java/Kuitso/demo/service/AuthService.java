@@ -61,16 +61,20 @@ public class AuthService {
 
         HttpSession session = request.getSession(false);
         if (session != null) {
-            Long userId = (Long) (request.getSession().getAttribute("userId"));
+
+            Long userId = (Long) (session.getAttribute("userId"));
 
             User user = userRepository.findByUserIdAndStatus(userId, ACTIVE)
                     .orElseThrow(() -> new UserException(CANNOT_FOUND_USER));
 
             //세션 무효화
-            request.getSession().removeAttribute("userId");
+            session.removeAttribute("userId");
 
             //유저상태변경
             user.setStatus(DELETED);
+
+            userRepository.save(user);
+
         } else throw new UserException(CANNOT_FOUND_SESSION);
 
     }
@@ -82,13 +86,16 @@ public class AuthService {
         User user = userRepository.findByEmailAndStatus(email, ACTIVE)
                 .orElseThrow(() -> new UserException(CANNOT_FOUND_USER));
 
+        String sessionId;
         if (user.getPassword().equals(password)) {
             log.info("Login successful");
             HttpSession session = request.getSession();
+            sessionId = session.getId();
             session.setAttribute("userId", user.getUserId());
+
         } else throw new UserException(LOGIN_FAILED);
 
-        return new PostSLogInResponse(user.getUserId());
+        return new PostSLogInResponse(user.getUserId(), sessionId);
 
     }
 

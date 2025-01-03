@@ -17,8 +17,10 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static Kuitso.demo.common.response.status.BaseExceptionResponseStatus.*;
 import static Kuitso.demo.domain.base.BaseStatus.ACTIVE;
@@ -49,7 +51,16 @@ public class HomeService {
         }
 
         List<HomeResponse.ProductDetail> productDetailList = new ArrayList<>();
-        for (Product product : productList) {
+
+        // 찜수 기준으로 내림차순 정렬
+        List<Product> sortedProductList = productList.stream()
+                .sorted(Comparator.comparingInt((Product p) -> p.getWishUserList() != null ? p.getWishUserList().size() : 0)
+                        .reversed())  // 내림차순으로 정렬
+                .collect(Collectors.toList());
+
+
+        for (Product product : sortedProductList) {
+
             HomeResponse.ProductDetail productDetail = new HomeResponse.ProductDetail(
                     product.getProductId(),
                     product.getPicture(),

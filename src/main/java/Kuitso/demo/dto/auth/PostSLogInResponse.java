@@ -11,4 +11,5 @@ public class PostSLogInResponse {
      * 로그인 response dto
      */
     private long userId;
+    private String sessionId;
 }
