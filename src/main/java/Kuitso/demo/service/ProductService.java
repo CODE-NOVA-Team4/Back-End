@@ -1,8 +1,6 @@
 package Kuitso.demo.service;
 
-<<<<<<< HEAD
 import Kuitso.demo.common.exception.CategoryException;
-=======
 import Kuitso.demo.domain.Category;
 import Kuitso.demo.domain.Product;
 import Kuitso.demo.domain.ProductImage;
@@ -10,7 +8,6 @@ import Kuitso.demo.domain.User;
 import Kuitso.demo.dto.product.GetProductSearchInfoResponse;
 import Kuitso.demo.repository.ProductRepository;
 import Kuitso.demo.repository.UserRepository;
->>>>>>> bc182d85ff8c1eb74b73da53e92b20e5e74180f3
 import Kuitso.demo.common.exception.ProductException;
 import Kuitso.demo.common.exception.UserException;
 import Kuitso.demo.domain.Category;
