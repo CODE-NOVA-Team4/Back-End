@@ -19,7 +19,17 @@ public enum BaseExceptionResponseStatus implements ResponseStatus{
     CANNOT_FOUND_USER(2000, HttpStatus.BAD_REQUEST.value(), "유저를 찾을수 없습니다"),
     ALREADY_EXIST_USER(2001, HttpStatus.BAD_REQUEST.value(), "이미등록된 회원입니다"),
     LOGIN_FAILED(2002, HttpStatus.BAD_REQUEST.value(), "로그인에 실패했습니다"),
-    CANNOT_FOUND_SESSION(2002, HttpStatus.BAD_REQUEST.value(), "세션을 찾을수없습니다");
+    CANNOT_FOUND_SESSION(2003, HttpStatus.BAD_REQUEST.value(), "세션을 찾을수없습니다"),
+
+    /**
+     * 3000: 카테고리관련
+     */
+    CANNOT_FOUND_CATEGORY(3000, HttpStatus.BAD_REQUEST.value(), "해당하는 카테고리가 없습니다"),
+
+    /**
+     * 4000: 상품관련
+     */
+    CANNOT_FOUND_PRODUCTLIST(4000, HttpStatus.BAD_REQUEST.value(), "등록된 상품이 없습니다");
 
     private final int code;
     private final int status;

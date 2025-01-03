@@ -11,7 +11,7 @@ spring:
 #     url: jdbc:h2:tcp://localhost/~/kuitso
 #     url: jdbc:h2:tcp://localhost/~/test
 #     username: sa
-#     password:
+#     password: 1234
 #     driver-class-name: org.h2.Driver
     url: jdbc:mysql://kuitso.cpa0kqyuax1o.ap-northeast-2.rds.amazonaws.com:3306/kuitso?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: kuitso
