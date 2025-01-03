@@ -26,10 +26,10 @@ public class ProductController {
         return new BaseResponse<>(productService.search(getProductSearchRequest));
     }
 
-    @GetMapping("/list")
-    public BaseResponse<GetProductSearchFilterRequest> searchFilter(@RequestParam long categoryId,@RequestBody GetProductSearchFilterRequest getProductSearchFilterRequest) {
-
-        log.info("[ProductController].searchFilter");
-        return new BaseResponse<>(productService.searchFilter(getProductSearchFilterRequest));
-    }
+//    @GetMapping("/list")
+//    public BaseResponse<GetProductSearchFilterRequest> searchFilter(@RequestParam long categoryId,@RequestBody GetProductSearchFilterRequest getProductSearchFilterRequest) {
+//
+//        log.info("[ProductController].searchFilter");
+//        return new BaseResponse<>(productService.searchFilter(categoryId,getProductSearchFilterRequest));
+//    }
 }
