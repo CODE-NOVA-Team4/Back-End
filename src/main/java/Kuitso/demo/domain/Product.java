@@ -55,7 +55,7 @@ public class Product {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToMany(mappedBy = "categoryList")
+    @ManyToMany
     @JoinTable(
             name = "product_category",
             joinColumns = @JoinColumn(name = "product_id"),
@@ -64,11 +64,11 @@ public class Product {
     private List<Category> categoryList;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "sell_user_id")
     private User sellUser;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "buy_user_id")
     private User buyUser;
 
     @ManyToMany(mappedBy = "wishProductList")
