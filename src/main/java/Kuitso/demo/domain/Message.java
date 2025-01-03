@@ -32,7 +32,7 @@ public class Message {
     private LocalDateTime createdAt;
 
     @ManyToOne(fetch = LAZY)
-    @Column(name = "chat_join_id", nullable = false)
+    @JoinColumn(name = "chat_join_id", nullable = false)
     private ChatJoin chatJoin;
 
 

@@ -55,7 +55,7 @@ public class Product {
     @JoinColumn(name = "user_id")
     private User user;
 
-    @ManyToMany(mappedBy = "categoryList")
+    @ManyToMany
     @JoinTable(
             name = "product_category",
             joinColumns = @JoinColumn(name = "product_id"),
