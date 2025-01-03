@@ -104,27 +104,24 @@ public class AuthService {
 
     public Boolean sendCode(PostCodeRequest postCodeRequest) throws IOException {
         String email = postCodeRequest.getEmail();
-        String univName = postCodeRequest.getUnivName();
-        Boolean univCheck = postCodeRequest.getUniv_check();
         UnivCert.clear(apiKey, email);
 
-        Map<String, Object> result = UnivCert.certify(apiKey, email, univName, univCheck);
+        Map<String, Object> result = UnivCert.certify(apiKey, email, "건국대학교", true);
 
         if (!(boolean) result.get("success")) {
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 
     public PostVerificationResponse verification(PostVerificationRequest postVerificationRequest) throws IOException {
         String email = postVerificationRequest.getEmail();
-        String univName = postVerificationRequest.getUnivName();
         int code = Integer.parseInt(postVerificationRequest.getCode());
-        Map<String, Object> result = UnivCert.certifyCode(apiKey, email, univName, code);
+        Map<String, Object> result = UnivCert.certifyCode(apiKey, email, "건국대학교", code);
 
         if ((boolean) result.get("success")) {
-            return new PostVerificationResponse(true, univName, email, LocalDateTime.now());
+            return new PostVerificationResponse(true, "건국대학교", email, LocalDateTime.now());
         } else{
             return new PostVerificationResponse(false, "", "", LocalDateTime.now());
         }

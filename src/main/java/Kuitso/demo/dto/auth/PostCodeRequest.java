@@ -11,6 +11,4 @@ public class PostCodeRequest {
      * 이메일인증전송 request dto
      */
     private String email;
-    private String univName;
-    private Boolean univ_check;
 }
