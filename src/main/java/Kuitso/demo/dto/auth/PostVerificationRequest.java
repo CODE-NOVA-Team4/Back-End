@@ -10,7 +10,6 @@ public class PostVerificationRequest {
     /**
      * 이메일인증확인 request dto
      */
-    private String key;
     private String email;
     private String univName;
     private String code;

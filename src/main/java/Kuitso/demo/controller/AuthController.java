@@ -1,14 +1,14 @@
 package Kuitso.demo.controller;
 
 import Kuitso.demo.common.response.BaseResponse;
-import Kuitso.demo.dto.auth.PostSLogInRequest;
-import Kuitso.demo.dto.auth.PostSLogInResponse;
-import Kuitso.demo.dto.auth.PostSignUpRequest;
+import Kuitso.demo.dto.auth.*;
 import Kuitso.demo.service.AuthService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
+
+import java.io.IOException;
 
 @Slf4j
 @RestController
@@ -47,6 +47,20 @@ public class AuthController {
         log.info("[AuthController].logout");
         authService.logout(request);
         return new BaseResponse<>(null);
+    }
+
+    @PostMapping("/code")
+    public BaseResponse<Boolean> code(@RequestBody PostCodeRequest postCodeRequest) throws IOException {
+
+        log.info("[AuthController].code");
+        return new BaseResponse<>(authService.sendCode(postCodeRequest));
+    }
+
+    @PostMapping("/verification")
+    public BaseResponse<PostVerificationResponse> verify(@RequestBody PostVerificationRequest postVerificationRequest) throws IOException {
+
+        log.info("[AuthController].verification");
+        return new BaseResponse<>(authService.verification(postVerificationRequest));
     }
 
 }
