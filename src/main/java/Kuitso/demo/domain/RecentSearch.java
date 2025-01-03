@@ -45,6 +45,12 @@ public class RecentSearch {
     @Column(name = "created_at",nullable = false, updatable = false)
     private LocalDateTime createdAt;
 
+    public RecentSearch(String recentSearch, User user, BaseStatus baseStatus) {
+        this.recentSearch = recentSearch;
+        this.user = user;
+        this.status = baseStatus;
+    }
+
     public void changeStatus(BaseStatus status) {
         this.status = status;
     }

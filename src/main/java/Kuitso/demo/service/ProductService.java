@@ -1,13 +1,9 @@
 package Kuitso.demo.service;
 
 import Kuitso.demo.common.exception.CategoryException;
-import Kuitso.demo.domain.Category;
-import Kuitso.demo.domain.Product;
-import Kuitso.demo.domain.ProductImage;
-import Kuitso.demo.domain.User;
+import Kuitso.demo.domain.*;
 import Kuitso.demo.dto.product.GetProductSearchInfoResponse;
-import Kuitso.demo.repository.ProductRepository;
-import Kuitso.demo.repository.UserRepository;
+import Kuitso.demo.repository.*;
 import Kuitso.demo.common.exception.ProductException;
 import Kuitso.demo.common.exception.UserException;
 import Kuitso.demo.domain.Category;
@@ -17,8 +13,6 @@ import Kuitso.demo.domain.User;
 import Kuitso.demo.domain.base.BaseStatus;
 import Kuitso.demo.dto.category.GetCategoryResponse;
 import Kuitso.demo.dto.product.*;
-import Kuitso.demo.repository.CategoryRepository;
-import Kuitso.demo.repository.ProductImageRepository;
 import Kuitso.demo.repository.ProductRepository;
 import Kuitso.demo.repository.UserRepository;
 import jakarta.servlet.http.HttpServletRequest;
@@ -46,6 +40,7 @@ public class ProductService {
 
     private final ProductRepository productRepository;
     private final UserRepository userRepository;
+    private final RecentSearchRepository recentSearchRepository;
 
     @Transactional
     public void addWishProduct(Long userId, Long productId) {
@@ -87,13 +82,19 @@ public class ProductService {
     private final CategoryRepository categoryRepository;
     private final ProductImageRepository productImageRepository;
 
-    public GetProductSearchResponse search(GetProductSearchRequest getProductSearchRequest) {
+    public GetProductSearchResponse search(GetProductSearchRequest getProductSearchRequest, Long userId) {
         String recentSearch = getProductSearchRequest.getRecentSearch();
 
         Optional<List<Product>> productList = productRepository.findByProductNameContaining(recentSearch);
         if (!productList.isPresent()) {
             throw new ProductException( NOT_EXIST_PRODUCTLIST);
         }
+
+        User findUser = userRepository.findById(userId)
+                        .orElseThrow(() -> new UserException(CANNOT_FOUND_USER));
+
+        recentSearchRepository.save(new RecentSearch(recentSearch, findUser, ACTIVE));
+
 
         List<GetProductSearchResponse.ProductDetail> productResponses = new ArrayList<>();
 
