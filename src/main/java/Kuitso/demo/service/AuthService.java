@@ -106,7 +106,7 @@ public class AuthService {
         Boolean univCheck = postCodeRequest.getUniv_check();
         UnivCert.clear(apiKey, email);
 
-        Map<String, Object> result = UnivCert.certify(apiKey, email, univName, univCheck);
+        Map<String, Object> result = UnivCert.certify(apiKey, email, "건국대학교", univCheck);
 
         if (!(boolean) result.get("success")) {
             return true;
@@ -119,10 +119,10 @@ public class AuthService {
         String email = postVerificationRequest.getEmail();
         String univName = postVerificationRequest.getUnivName();
         int code = Integer.parseInt(postVerificationRequest.getCode());
-        Map<String, Object> result = UnivCert.certifyCode(apiKey, email, univName, code);
+        Map<String, Object> result = UnivCert.certifyCode(apiKey, email, "건국대학교", code);
 
         if ((boolean) result.get("success")) {
-            return new PostVerificationResponse(true, univName, email, LocalDateTime.now());
+            return new PostVerificationResponse(true, "건국대학교", email, LocalDateTime.now());
         } else{
             return new PostVerificationResponse(false, "", "", LocalDateTime.now());
         }

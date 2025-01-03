@@ -1,6 +1,8 @@
 package Kuitso.demo.controller;
 
 import Kuitso.demo.common.response.BaseResponse;
+import Kuitso.demo.common.response.status.BaseExceptionResponseStatus;
+import Kuitso.demo.domain.base.BaseStatus;
 import Kuitso.demo.dto.auth.*;
 import Kuitso.demo.service.AuthService;
 import jakarta.servlet.http.HttpServletRequest;
@@ -43,7 +45,6 @@ public class AuthController {
 
     @PostMapping("/logout")
     public BaseResponse<Void> logout(HttpServletRequest request) {
-
         log.info("[AuthController].logout");
         authService.logout(request);
         return new BaseResponse<>(null);
@@ -51,9 +52,11 @@ public class AuthController {
 
     @PostMapping("/code")
     public BaseResponse<Boolean> code(@RequestBody PostCodeRequest postCodeRequest) throws IOException {
-
         log.info("[AuthController].code");
-        return new BaseResponse<>(authService.sendCode(postCodeRequest));
+        if(authService.sendCode(postCodeRequest)) {
+            return new BaseResponse<>(BaseExceptionResponseStatus.SUCCESS, Boolean.TRUE);
+        }
+        return new BaseResponse<>(BaseExceptionResponseStatus.FAILURE, Boolean.TRUE);
     }
 
     @PostMapping("/verification")
