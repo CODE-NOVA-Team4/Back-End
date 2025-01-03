@@ -85,7 +85,6 @@ public class ProductService {
     }
 
     private final CategoryRepository categoryRepository;
-    private final UserRepository userRepository;
     private final ProductImageRepository productImageRepository;
 
     public GetProductSearchResponse search(GetProductSearchRequest getProductSearchRequest) {
