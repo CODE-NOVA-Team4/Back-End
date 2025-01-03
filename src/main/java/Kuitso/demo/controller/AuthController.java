@@ -18,7 +18,7 @@ public class AuthController {
 
     private final AuthService authService;
 
-    @GetMapping("/signup")
+    @PostMapping("/signup")
     public BaseResponse<Void> signup(@RequestBody PostSignUpRequest postSignUpRequest, HttpServletRequest request) {
 
         log.info("[AuthController].signup");

@@ -16,6 +16,7 @@ import java.util.Optional;
 @Slf4j
 @Service
 @RequiredArgsConstructor
+@Transactional
 public class UserService {
 
     private final UserRepository userRepository;
@@ -24,7 +25,6 @@ public class UserService {
         return userRepository.findByUserIdAndStatus(userId, status);
     }
 
-    @Transactional
     public void modifyUser(Long userId, PatchUserInfoRequest patchUserInfoRequest) {
         String nickName = patchUserInfoRequest.getNickname();
         String department = patchUserInfoRequest.getDepartment();
