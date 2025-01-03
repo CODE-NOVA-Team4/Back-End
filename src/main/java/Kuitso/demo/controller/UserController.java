@@ -43,7 +43,7 @@ public class UserController {
 
     @PatchMapping("/{userId}/info")
     public BaseResponse<Void> patchInfo(@PathVariable("userId") Long userId,
-                                        @ModelAttribute PatchUserInfoRequest patchUserInfoRequest) {
+                                        @RequestBody PatchUserInfoRequest patchUserInfoRequest) {
         userService.modifyUser(userId, patchUserInfoRequest);
         return new BaseResponse<>(null);
     }

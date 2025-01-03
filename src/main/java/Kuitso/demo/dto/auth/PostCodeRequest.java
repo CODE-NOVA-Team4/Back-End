@@ -10,8 +10,7 @@ public class PostCodeRequest {
     /**
      * 이메일인증전송 request dto
      */
-    private String key;
     private String email;
     private String univName;
-    private String univ_check;
+    private Boolean univ_check;
 }
