@@ -48,16 +48,21 @@ public class AuthService {
     }
 
     public void signout(HttpServletRequest request) {
-        Long userId = Long.valueOf(request.getSession().getAttribute("userId").toString());
 
-        User user = userRepository.findByUserIdAndStatus(userId,ACTIVE)
-                .orElseThrow(() -> new UserException(CANNOT_FOUND_USER));
+        HttpSession session = request.getSession(false);
+        if(session != null) {
+            Long userId = (Long) (request.getSession().getAttribute("userId"));
 
-        //세션 무효화
-        request.getSession().removeAttribute("userId");
+            User user = userRepository.findByUserIdAndStatus(userId, ACTIVE)
+                    .orElseThrow(() -> new UserException(CANNOT_FOUND_USER));
 
-        //유저상태변경
-        user.setStatus(DELETED);
+            //세션 무효화
+            request.getSession().removeAttribute("userId");
+
+            //유저상태변경
+            user.setStatus(DELETED);
+        }
+        else throw new UserException(CANNOT_FOUND_SESSION);
 
     }
 
@@ -77,5 +82,16 @@ public class AuthService {
 
         return new PostSLogInResponse(user.getUserId());
 
+    }
+
+    public void logout(HttpServletRequest request) {
+
+        HttpSession session = request.getSession(false);
+        if(session != null) {
+
+            //세션 무효화
+            request.getSession().removeAttribute("userId");
+        }
+        else throw new UserException(CANNOT_FOUND_SESSION);
     }
 }

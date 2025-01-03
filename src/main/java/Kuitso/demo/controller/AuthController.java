@@ -41,12 +41,12 @@ public class AuthController {
         return new BaseResponse<>(authService.login(postSLogInRequest,request));
     }
 
-//    @PatchMapping("/logout")
-//    public BaseResponse<Void> logout(@RequestBody PostSLogInRequest postSLogInRequest,HttpServletRequest request) {
-//
-//        log.info("[AuthController].logout");
-//
-//        return new BaseResponse<>( authService.logout( postSLogInRequest,request);
-//    }
+    @PostMapping("/logout")
+    public BaseResponse<Void> logout(HttpServletRequest request) {
+
+        log.info("[AuthController].logout");
+        authService.logout(request);
+        return new BaseResponse<>(null);
+    }
 
 }
