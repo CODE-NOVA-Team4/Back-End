@@ -16,8 +16,8 @@ public enum BaseExceptionResponseStatus implements ResponseStatus{
     /**
      * 2000: 유저관련
      */
-    CANNOT_FOUND_USER(2000, HttpStatus.BAD_REQUEST.value(), "유저를 찾을수 없습니다");
-
+    CANNOT_FOUND_USER(2000, HttpStatus.BAD_REQUEST.value(), "유저를 찾을수 없습니다"),
+    ALREADY_EXIST_USER(2001, HttpStatus.BAD_REQUEST.value(), "이미등록된 회원입니다");
 
     private final int code;
     private final int status;

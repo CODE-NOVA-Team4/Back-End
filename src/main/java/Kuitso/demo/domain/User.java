@@ -40,7 +40,7 @@ public class User extends BaseTime {
     @Column(nullable = false)
     private String email;
 
-    @Column(nullable = false)
+    @Column()
     private String userPicture;
 
     @Enumerated(STRING)
@@ -71,4 +71,10 @@ public class User extends BaseTime {
     @OneToMany(mappedBy = "user")
     private List<ChatJoin> chatJoinList;
 
+    public User(String nickname, String email, String password, String department) {
+       this.nickName = nickname;
+       this.email = email;
+       this.password = password;
+       this.department = department;
+    }
 }
