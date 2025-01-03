@@ -84,4 +84,7 @@ public class User extends BaseTime {
        this.department = department;
     }
 
+    public void setStatus(BaseStatus status) {
+        this.status = status;
+    }
 }

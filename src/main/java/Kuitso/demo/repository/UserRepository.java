@@ -31,4 +31,5 @@ public interface UserRepository extends JpaRepository<User, Integer> {
         FROM Product p JOIN p.wishUserList u WHERE u.userId = :userId""")
     Optional<List<SellBuyWishProductDTO>> findWishProduct(@Param("userId") Long userId);
 
+    Optional<User> findByEmailAndStatus(String email, BaseStatus baseStatus);
 }
