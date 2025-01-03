@@ -3,6 +3,7 @@ package Kuitso.demo.service;
 import Kuitso.demo.common.exception.ProductException;
 import Kuitso.demo.domain.Product;
 import Kuitso.demo.dto.category.GetCategoryResponse;
+import Kuitso.demo.dto.product.GetProductSearchFilterRequest;
 import Kuitso.demo.dto.product.GetProductSearchRequest;
 import Kuitso.demo.dto.product.GetProductSearchResponse;
 import Kuitso.demo.repository.ProductRepository;
@@ -51,5 +52,8 @@ public class ProductService {
             }
 
         return new GetProductSearchResponse(recentSearch,productResponses);
+    }
+
+    public GetProductSearchFilterRequest searchFilter(GetProductSearchFilterRequest getProductSearchFilterRequest) {
     }
 }

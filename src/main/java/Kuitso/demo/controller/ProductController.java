@@ -9,10 +9,7 @@ import Kuitso.demo.service.ProductService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @Slf4j
 @RestController
@@ -27,5 +24,12 @@ public class ProductController {
 
         log.info("[ProductController].search");
         return new BaseResponse<>(productService.search(getProductSearchRequest));
+    }
+
+    @GetMapping("/list")
+    public BaseResponse<GetProductSearchFilterRequest> searchFilter(@RequestParam long categoryId,@RequestBody GetProductSearchFilterRequest getProductSearchFilterRequest) {
+
+        log.info("[ProductController].searchFilter");
+        return new BaseResponse<>(productService.searchFilter(getProductSearchFilterRequest));
     }
 }
