@@ -1,5 +1,6 @@
 package Kuitso.demo.dto.user;
 
+import Kuitso.demo.dto.product.SellBuyWishProductDTO;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 

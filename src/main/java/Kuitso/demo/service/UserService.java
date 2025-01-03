@@ -3,7 +3,7 @@ package Kuitso.demo.service;
 import Kuitso.demo.domain.User;
 import Kuitso.demo.domain.base.BaseStatus;
 import Kuitso.demo.dto.user.PatchUserInfoRequest;
-import Kuitso.demo.dto.user.SellBuyWishProductDTO;
+import Kuitso.demo.dto.product.SellBuyWishProductDTO;
 import Kuitso.demo.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -44,7 +44,7 @@ public class UserService {
     }
 
     public Optional<List<SellBuyWishProductDTO>> findWishProduct(Long userId) {
-        return userRepository.findSellProduct(userId);
+        return userRepository.findWishProduct(userId);
     }
 
 

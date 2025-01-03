@@ -1,4 +1,4 @@
-package Kuitso.demo.dto.user;
+package Kuitso.demo.dto.product;
 
 import lombok.Getter;
 
