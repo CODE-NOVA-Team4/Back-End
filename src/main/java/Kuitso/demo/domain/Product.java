@@ -27,7 +27,7 @@ public class Product extends BaseTime {
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "product_id", nullable = false)
-    private long productId;
+    private Long productId;
 
     @Column(nullable = false)
     private String productName;

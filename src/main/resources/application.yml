@@ -2,16 +2,16 @@ server:
   servlet:
     session:
       cookie:
-        secure: true
         http-only: true
         same-site: none
+        secure: true
 
 spring:
   datasource:
 #     url: jdbc:h2:tcp://localhost/~/kuitso
 #     url: jdbc:h2:tcp://localhost/~/test
 #     username: sa
-#     password: 1234
+#     password:
 #     driver-class-name: org.h2.Driver
     url: jdbc:mysql://kuitso.cpa0kqyuax1o.ap-northeast-2.rds.amazonaws.com:3306/kuitso?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: kuitso
