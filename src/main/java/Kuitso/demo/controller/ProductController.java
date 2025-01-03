@@ -1,6 +1,10 @@
 package Kuitso.demo.controller;
 
 import Kuitso.demo.common.response.BaseResponse;
+import Kuitso.demo.dto.product.GetProductSearchInfoResponse;
+import Kuitso.demo.service.ProductService;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import Kuitso.demo.dto.auth.PostSignUpRequest;
 import Kuitso.demo.dto.product.*;
 import Kuitso.demo.service.ProductService;
@@ -16,6 +20,23 @@ import org.springframework.web.bind.annotation.*;
 public class ProductController {
 
     private final ProductService productService;
+
+    @PostMapping("/{productId}/wish-register")
+    public BaseResponse<Void> registerWish(@PathVariable String productId, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Long userId = (Long)session.getAttribute("userId");
+
+        productService.addWishProduct(userId, Long.valueOf(productId));
+
+        return new BaseResponse<>(null);
+    }
+
+    @GetMapping("/{productId}/info")
+    public BaseResponse<GetProductSearchInfoResponse> searchProductInfo(@PathVariable Long productId, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Long userId = (Long)session.getAttribute("userId");
+        return new BaseResponse<>(productService.getProductInfoById(productId, userId));
+    }
 
     @GetMapping("/search")
     public BaseResponse<GetProductSearchResponse> search(@RequestBody GetProductSearchRequest getProductSearchRequest) {
