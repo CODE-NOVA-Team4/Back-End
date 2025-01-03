@@ -1,6 +1,7 @@
 package Kuitso.demo.domain;
 
 import Kuitso.demo.domain.base.BaseStatus;
+import Kuitso.demo.domain.base.BaseTime;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
@@ -21,7 +22,7 @@ import static jakarta.persistence.GenerationType.IDENTITY;
 @Entity
 @Getter
 @Where(clause = "status = 'ACTIVE'") // ACTIVE 상태인 데이터만 조회
-public class Product {
+public class Product extends BaseTime {
 
     @Id
     @GeneratedValue(strategy = IDENTITY)
