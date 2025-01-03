@@ -1,5 +1,6 @@
 package Kuitso.demo.dto.recentSearch;
 
+import Kuitso.demo.domain.RecentSearch;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 
@@ -12,6 +13,6 @@ public class GetRecentSearchResponse {
     /**
      * 최근검색어조회 request dto
      */
-    private List<String> recentSearches;
+    private List<RecentSearchDTO> recentSearches;
 
 }

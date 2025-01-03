@@ -12,4 +12,7 @@ import java.util.Optional;
 public interface RecentSearchRepository extends JpaRepository<RecentSearch, Long> {
 
     List<RecentSearch> findByUser_UserIdAndStatus(Long userId, BaseStatus status);
+
+    RecentSearch findByRecentSearchId(Long recentSearchId);
+
 }
