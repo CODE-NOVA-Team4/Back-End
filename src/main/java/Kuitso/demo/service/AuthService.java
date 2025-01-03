@@ -86,14 +86,16 @@ public class AuthService {
         User user = userRepository.findByEmailAndStatus(email, ACTIVE)
                 .orElseThrow(() -> new UserException(CANNOT_FOUND_USER));
 
+        String sessionId;
         if (user.getPassword().equals(password)) {
             log.info("Login successful");
             HttpSession session = request.getSession();
+            sessionId = session.getId();
             session.setAttribute("userId", user.getUserId());
 
         } else throw new UserException(LOGIN_FAILED);
 
-        return new PostSLogInResponse(user.getUserId());
+        return new PostSLogInResponse(user.getUserId(), sessionId);
 
     }
 
