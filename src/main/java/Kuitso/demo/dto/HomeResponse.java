@@ -1,7 +1,5 @@
 package Kuitso.demo.dto;
 
-import Kuitso.demo.domain.Product;
-import Kuitso.demo.dto.product.GetProductSearchResponse;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,7 +9,8 @@ import java.util.List;
 
 @Getter
 @AllArgsConstructor
-public class GetHomeResponse {
+@NoArgsConstructor
+public class HomeResponse {
 
     /**
      * 카테고리별 조회 response dto
