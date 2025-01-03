@@ -77,4 +77,8 @@ public class User extends BaseTime {
        this.password = password;
        this.department = department;
     }
+
+    public void setStatus(BaseStatus status) {
+        this.status = status;
+    }
 }

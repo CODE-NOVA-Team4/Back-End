@@ -12,7 +12,9 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import static Kuitso.demo.common.response.status.BaseExceptionResponseStatus.ALREADY_EXIST_USER;
+import static Kuitso.demo.common.response.status.BaseExceptionResponseStatus.CANNOT_FOUND_USER;
 import static Kuitso.demo.domain.base.BaseStatus.ACTIVE;
+import static Kuitso.demo.domain.base.BaseStatus.DELETED;
 
 @Slf4j
 @Service
@@ -41,6 +43,20 @@ public class AuthService {
             session.setAttribute("userId", user.getUserId());
 
         }
+
+    }
+
+    public void signout(HttpServletRequest request) {
+        Long userId = Long.valueOf(request.getSession().getAttribute("userId").toString());
+
+        User user = userRepository.findByUserIdAndStatus(userId,ACTIVE)
+                .orElseThrow(() -> new UserException(CANNOT_FOUND_USER));
+
+        //세션 무효화
+        request.getSession().removeAttribute("userId");
+
+        //유저상태변경
+        user.setStatus(DELETED);
 
     }
 }

@@ -23,4 +23,12 @@ public class AuthController {
         authService.signup(postSignUpRequest,request);
         return new BaseResponse<>(null);
     }
+
+    @PatchMapping("/signout")
+    public BaseResponse<Void> signout(HttpServletRequest request) {
+
+        log.info("[AuthController].signout");
+        authService.signout(request);
+        return new BaseResponse<>(null);
+    }
 }
