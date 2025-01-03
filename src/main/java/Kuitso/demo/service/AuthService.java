@@ -107,9 +107,9 @@ public class AuthService {
         Map<String, Object> result = UnivCert.certify(apiKey, email, "건국대학교", true);
 
         if (!(boolean) result.get("success")) {
-            return true;
-        } else {
             return false;
+        } else {
+            return true;
         }
     }
 
