@@ -80,4 +80,13 @@ public class Product {
     @OneToMany(mappedBy = "product")
     private List<ChatRoom> chatRoomList = new ArrayList<>();
 
+    public Product(long productId,String picture, String productName, int price,String description) {
+        this.productId = productId;
+        this.picture = picture;
+        this.productName = productName;
+        this.price = price;
+        this.description = description;
+    }
+
+
 }
