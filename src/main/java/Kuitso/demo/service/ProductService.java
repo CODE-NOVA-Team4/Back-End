@@ -82,6 +82,7 @@ public class ProductService {
     private final CategoryRepository categoryRepository;
     private final ProductImageRepository productImageRepository;
 
+
     public GetProductSearchResponse search(GetProductSearchRequest getProductSearchRequest, Long userId) {
         String recentSearch = getProductSearchRequest.getRecentSearch();
 
@@ -93,7 +94,10 @@ public class ProductService {
         User findUser = userRepository.findById(userId)
                         .orElseThrow(() -> new UserException(CANNOT_FOUND_USER));
 
-        recentSearchRepository.save(new RecentSearch(recentSearch, findUser, ACTIVE));
+        RecentSearch addRecentSearch = new RecentSearch(recentSearch, findUser, ACTIVE);
+
+        recentSearchRepository.save(addRecentSearch);
+        findUser.getRecentSearchList().add(addRecentSearch);
 
 
         List<GetProductSearchResponse.ProductDetail> productResponses = new ArrayList<>();
