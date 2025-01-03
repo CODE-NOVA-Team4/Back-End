@@ -13,7 +13,7 @@ public class BaseTime {
 
     @CreatedDate
     @Column(name = "created_at",nullable = false, updatable = false)
-    private LocalDateTime createdAt;
+    private LocalDateTime createdAt = LocalDateTime.now();
 
     @LastModifiedDate
     @Column(name = "updated_at",nullable = false)

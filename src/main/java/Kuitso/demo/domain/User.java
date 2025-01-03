@@ -77,4 +77,11 @@ public class User extends BaseTime {
         this.password = password;
     }
 
+    public User(String nickname, String email, String password, String department) {
+       this.nickName = nickname;
+       this.email = email;
+       this.password = password;
+       this.department = department;
+    }
+
 }
