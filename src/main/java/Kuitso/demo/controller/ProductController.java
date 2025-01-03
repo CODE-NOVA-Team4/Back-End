@@ -39,10 +39,11 @@ public class ProductController {
     }
 
     @GetMapping("/search")
-    public BaseResponse<GetProductSearchResponse> search(@RequestBody GetProductSearchRequest getProductSearchRequest) {
-
+    public BaseResponse<GetProductSearchResponse> search(@RequestBody GetProductSearchRequest getProductSearchRequest, HttpServletRequest request) {
+        HttpSession session = request.getSession();
+        Long userId = (Long)session.getAttribute("userId");
         log.info("[ProductController].search");
-        return new BaseResponse<>(productService.search(getProductSearchRequest));
+        return new BaseResponse<>(productService.search(getProductSearchRequest, userId));
     }
 
     @PostMapping("/register")
