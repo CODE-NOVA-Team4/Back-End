@@ -89,5 +89,24 @@ public class Product extends BaseTime {
         this.description = description;
     }
 
+    public Product(String productName, int price, String picture, String sellStatus, String tradeType,
+                   String description, BaseStatus status, User user,User sellUser) {
+        this.productName = productName;
+        this.price = price;
+        this.picture = picture;
+        this.sellStatus = sellStatus;
+        this.tradeType = tradeType;
+        this.description = description;
+        this.status = status;
+        this.user = user;
+        this.sellUser = sellUser;
+    }
 
+    public void setCategoryList(List<Category> categoryList) {
+        this.categoryList = categoryList;
+    }
+
+    public void setProductImageListList(List<ProductImage> productImageListList) {
+        this.productImageListList = productImageListList;
+    }
 }

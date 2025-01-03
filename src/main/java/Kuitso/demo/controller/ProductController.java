@@ -2,9 +2,7 @@ package Kuitso.demo.controller;
 
 import Kuitso.demo.common.response.BaseResponse;
 import Kuitso.demo.dto.auth.PostSignUpRequest;
-import Kuitso.demo.dto.product.GetProductSearchFilterRequest;
-import Kuitso.demo.dto.product.GetProductSearchRequest;
-import Kuitso.demo.dto.product.GetProductSearchResponse;
+import Kuitso.demo.dto.product.*;
 import Kuitso.demo.service.ProductService;
 import jakarta.servlet.http.HttpServletRequest;
 import lombok.RequiredArgsConstructor;
@@ -26,10 +24,20 @@ public class ProductController {
         return new BaseResponse<>(productService.search(getProductSearchRequest));
     }
 
+    @PostMapping("/register")
+    public BaseResponse<Void> register(@RequestBody PostProductRegisterRequest postProductRegisterRequest,HttpServletRequest httpServletRequest) {
+
+        log.info("[ProductController].register");
+        return new BaseResponse<>(productService.register(postProductRegisterRequest,httpServletRequest));
+    }
+
 //    @GetMapping("/list")
-//    public BaseResponse<GetProductSearchFilterRequest> searchFilter(@RequestParam long categoryId,@RequestBody GetProductSearchFilterRequest getProductSearchFilterRequest) {
+//    public BaseResponse<GetProductSearchFilterResponse> searchFilter(@RequestParam long categoryId,
+//                                                                     @RequestBody GetProductSearchFilterRequest getProductSearchFilterRequest) {
 //
 //        log.info("[ProductController].searchFilter");
 //        return new BaseResponse<>(productService.searchFilter(categoryId,getProductSearchFilterRequest));
 //    }
+
+
 }

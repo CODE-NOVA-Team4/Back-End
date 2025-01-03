@@ -39,4 +39,9 @@ public class ProductImage {
     private Product product;
 
 
+    public ProductImage(String picture, Product product, BaseStatus baseStatus) {
+        this.productImage = picture;
+        this.product = product;
+        this.status = baseStatus;
+    }
 }
