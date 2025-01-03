@@ -15,7 +15,7 @@ public class GetProductSearchResponse {
     /**
      * 상품검색 response dto
      */
-    private long recentSearchId;
+    private String recentSearch;
     private List<ProductDetail> products;
 
     @Getter

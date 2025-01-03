@@ -29,7 +29,8 @@ public enum BaseExceptionResponseStatus implements ResponseStatus{
     /**
      * 4000: 상품관련
      */
-    CANNOT_FOUND_PRODUCTLIST(4000, HttpStatus.BAD_REQUEST.value(), "등록된 상품이 없습니다");
+    CANNOT_FOUND_PRODUCTLIST(4000, HttpStatus.BAD_REQUEST.value(), "등록된 상품이 없습니다"),
+    NOT_EXIST_PRODUCTLIST(4001, HttpStatus.BAD_REQUEST.value(), "해당하는 상품이 존재하지 않습니다");
 
     private final int code;
     private final int status;
