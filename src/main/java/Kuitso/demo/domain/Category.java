@@ -36,5 +36,4 @@ public class Category extends BaseTime {
     @ManyToMany(mappedBy = "categoryList")
     private List<Product> productList;
 
-
 }

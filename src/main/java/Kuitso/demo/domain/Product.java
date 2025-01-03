@@ -64,11 +64,11 @@ public class Product {
     private List<Category> categoryList;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "sell_user_id")
     private User sellUser;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "buy_user_id")
     private User buyUser;
 
     @ManyToMany(mappedBy = "wishProductList")

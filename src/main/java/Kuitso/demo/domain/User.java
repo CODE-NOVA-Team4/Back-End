@@ -20,6 +20,7 @@ import static jakarta.persistence.EnumType.STRING;
 @AllArgsConstructor
 @NoArgsConstructor
 @Where(clause = "status = 'ACTIVE'") // ACTIVE 상태인 데이터만 조회
+@Table(name="users")
 public class User extends BaseTime {
 
     @Id
@@ -59,7 +60,7 @@ public class User extends BaseTime {
     private List<Product> buyProductList = new ArrayList<>();
 
 
-    @ManyToMany(mappedBy = "wishUserList")
+    @ManyToMany
     @JoinTable(
             name = "wish_product",
             joinColumns = @JoinColumn(name = "user_id"),
