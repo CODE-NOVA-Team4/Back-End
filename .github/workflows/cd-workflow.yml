@@ -88,4 +88,4 @@ jobs:
               --group-id ${{ secrets.SECURITY_GROUP_ID }} \
               --protocol tcp \
               --port 22 \
-              --cidr ${{ steps.ip.outputs.ipv4 }}/32
+              --cidr ${{ steps.ip.outputs.ipv4 }}/32 
